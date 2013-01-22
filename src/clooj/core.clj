@@ -99,6 +99,7 @@
     (.setBracketMatchingEnabled false)
     (.setAutoIndentEnabled false)
     (.setAntiAliasingEnabled true)
+    (.setLineWrap wrap)
     ))
 
 (def get-clooj-version
