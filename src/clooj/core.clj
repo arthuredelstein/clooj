@@ -750,14 +750,15 @@
     (doall (map #(project/add-project app %) (project/load-project-set)))
     (let [frame (app :frame)]
       (utils/persist-window-shape utils/clooj-prefs "main-window" frame) 
-      (try (let [util (. Class forName "com.apple.eawt.FullScreenUtilities")]
-             (. (. util
-                   getMethod 
-                   "setWindowCanFullScreen"
-                   (into-array Class [java.awt.Window (. Boolean TYPE)]))
-                invoke
-                util 
-                (object-array [frame true]))))
+      (when (>= (. (System/getProperty "os.name") indexOf "Mac OS X") 0)
+        (try (let [util (. Class forName "com.apple.eawt.FullScreenUtilities")]
+               (. (. util
+                     getMethod 
+                     "setWindowCanFullScreen"
+                     (into-array Class [java.awt.Window (. Boolean TYPE)]))
+                  invoke
+                  util 
+                  (object-array [frame true])))))
       (.setVisible frame true)
       (on-window-activation frame #(project/update-project-tree (app :docs-tree))))
     (setup-temp-writer app)
