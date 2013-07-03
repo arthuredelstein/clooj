@@ -555,9 +555,9 @@
 
 (def project-clj-text (.trim
 "
-(defproject PROJECTNAME \"1.0.0-SNAPSHOT\"
-  :description \"FIXME: write\"
-  :dependencies [[org.clojure/clojure \"1.3.0\"]])
+(defproject PROJECTNAME \"0.1.0-SNAPSHOT\"
+  :description \"FIXME: write description\"
+  :dependencies [[org.clojure/clojure \"1.5.1\"]])
 "))
       
 (defn specify-source [project-dir title default-namespace]
