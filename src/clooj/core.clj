@@ -530,9 +530,10 @@
       (do (.setText text-area no-project-txt)
           (.setText doc-label (str "Source Editor (No file selected)"))
           (.setEditable text-area false)))
-    (update-caret-position text-area)
     (indent/setup-autoindent text-area)
     (reset! (app :file) file)
+    (load-caret-position app)
+    (update-caret-position text-area)
     (repl/apply-namespace-to-repl app)
     (reset! changing-file false)))
 
